@@ -8,7 +8,7 @@ import java.util.Locale;
 
 @Component
 public class CustomerToCustomerDTOMapper {
-    public CustomerDTO toDTO(Customer customer)
+    public static CustomerDTO toDTO(Customer customer)
     {
         CustomerDTO customerDTO = new CustomerDTO();
         customerDTO.setName(customer.getName().toUpperCase(Locale.ROOT));

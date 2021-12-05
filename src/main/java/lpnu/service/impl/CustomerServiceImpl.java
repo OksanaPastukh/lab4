@@ -13,17 +13,17 @@ import java.util.stream.Collectors;
 @Service
 public class CustomerServiceImpl implements CustomerService {
     private CustomerRepository customerRepository;
-    private CustomerToCustomerDTOMapper customerDTOMapper;
 
-    public CustomerServiceImpl(CustomerRepository customerRepository, CustomerToCustomerDTOMapper customerDTOMapper) {
+
+    public CustomerServiceImpl(CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
-        this.customerDTOMapper = customerDTOMapper;
+
     }
 
     @Override
     public List<CustomerDTO> getAllCustomers() {
       return  customerRepository.getAllCustomers().stream()
-              .map(e -> customerDTOMapper.toDTO(e))
+              .map(e -> CustomerToCustomerDTOMapper.toDTO(e))
               .collect(Collectors.toList());
     }
 
