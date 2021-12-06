@@ -1,6 +1,8 @@
 package lpnu.service.impl;
 
 import lpnu.dto.CustomerDTO;
+import lpnu.dto.NewCustomerDTO;
+import lpnu.entity.Customer;
 import lpnu.mapper.CustomerToCustomerDTOMapper;
 import lpnu.repository.CustomerRepository;
 import lpnu.service.CustomerService;
@@ -12,19 +14,19 @@ import java.util.stream.Collectors;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
-    private CustomerRepository customerRepository;
 
-
-    public CustomerServiceImpl(CustomerRepository customerRepository) {
-        this.customerRepository = customerRepository;
-
-    }
 
     @Override
     public List<CustomerDTO> getAllCustomers() {
-      return  customerRepository.getAllCustomers().stream()
+      return  CustomerRepository.getAllCustomers().stream()
               .map(e -> CustomerToCustomerDTOMapper.toDTO(e))
               .collect(Collectors.toList());
     }
 
+    @Override
+    public CustomerDTO createCustomer(NewCustomerDTO newCustomerDTO) {
+
+        Customer customer = CustomerRepository.createCustomer(newCustomerDTO);
+        return CustomerToCustomerDTOMapper.toDTO(customer);
+    }
 }

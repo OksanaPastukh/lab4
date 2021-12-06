@@ -1,6 +1,8 @@
 lpnu\entity\Customer.class
+lpnu\entity\enumeration\CustomerStatus.class
 lpnu\service\impl\CustomerServiceImpl.class
 lpnu\dto\CustomerDTO.class
+lpnu\dto\NewCustomerDTO.class
 lpnu\service\CustomerService.class
 lpnu\mapper\CustomerToCustomerDTOMapper.class
 lpnu\Application.class

@@ -1,12 +1,12 @@
 package lpnu.resourse;
 
 import lpnu.dto.CustomerDTO;
+import lpnu.dto.NewCustomerDTO;
 import lpnu.service.CustomerService;
 import lpnu.service.impl.CustomerServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,5 +21,10 @@ public class CustomerResource {
     @GetMapping("/customers")
     public List<CustomerDTO> getAllCustomers(){
         return customerService.getAllCustomers();
+    }
+
+    @PostMapping("/customers")
+    public CustomerDTO createCustomer(@RequestBody @Validated final NewCustomerDTO newCustomerDTO){
+        return customerService.createCustomer(newCustomerDTO);
     }
 }
