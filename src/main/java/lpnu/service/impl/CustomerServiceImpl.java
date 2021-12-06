@@ -29,4 +29,16 @@ public class CustomerServiceImpl implements CustomerService {
         Customer customer = CustomerRepository.createCustomer(newCustomerDTO);
         return CustomerToCustomerDTOMapper.toDTO(customer);
     }
+
+    @Override
+    public CustomerDTO updateCustomer(CustomerDTO customerDTO) {
+
+        final Customer customer = CustomerRepository.getCustomerById(customerDTO.getId());
+        customer.setName(customerDTO.getName());
+        customer.setSurname(customerDTO.getSurname());
+        customer.setPhoneNumber(customerDTO.getPhoneNumber());
+        customer.setCustomerStatus(customerDTO.getCustomerStatus());
+
+        return CustomerToCustomerDTOMapper.toDTO(customer);
+    }
 }

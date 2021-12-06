@@ -27,4 +27,9 @@ public class CustomerResource {
     public CustomerDTO createCustomer(@RequestBody @Validated final NewCustomerDTO newCustomerDTO){
         return customerService.createCustomer(newCustomerDTO);
     }
+    @PutMapping("/customers")
+    public CustomerDTO updateCustomer(@RequestBody @Validated final CustomerDTO customerDTO)
+    {
+        return customerService.updateCustomer(customerDTO);
+    }
 }
