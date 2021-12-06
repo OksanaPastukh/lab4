@@ -27,4 +27,9 @@ public class DriverResource {
     public DriverDTO createDriver(@RequestBody @Validated final NewDriverDTO newDriverDTO){
         return driverService.createDriver(newDriverDTO);
     }
+    @PutMapping("/drivers")
+    public DriverDTO updateDriver(@RequestBody @Validated final DriverDTO driverDTO)
+    {
+        return driverService.updateDriver(driverDTO);
+    }
 }

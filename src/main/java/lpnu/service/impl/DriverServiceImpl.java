@@ -27,4 +27,14 @@ public class DriverServiceImpl implements DriverService {
         Driver driver = DriverRepository.createDriver(newDriverDTO);
         return DriverToDriverDTOMapper.toDTO(driver);
     }
+
+    @Override
+    public DriverDTO updateDriver(DriverDTO driverDTO) {
+        final Driver driver = DriverRepository.getDriverById(driverDTO.getId());
+        driver.setName(driverDTO.getName());
+        driver.setSurname(driverDTO.getSurname());
+        driver.setPhoneNumber(driverDTO.getPhoneNumber());
+
+        return DriverToDriverDTOMapper.toDTO(driver);
+    }
 }
