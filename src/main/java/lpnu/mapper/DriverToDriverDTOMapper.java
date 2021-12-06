@@ -17,6 +17,7 @@ public class DriverToDriverDTOMapper {
         driverDTO.setName(driver.getName());
         driverDTO.setSurname(driver.getSurname());
         driverDTO.setPhoneNumber(driver.getPhoneNumber());
+        driverDTO.setDriverStatus(driver.getDriverStatus());
         return driverDTO;
 
     }

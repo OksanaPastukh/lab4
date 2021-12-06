@@ -1,5 +1,6 @@
 package lpnu.dto;
 
+import lpnu.entity.enumeration.DriverStatus;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -8,6 +9,7 @@ public class DriverDTO {
     private String name;
     private  String surname;
     private int phoneNumber;
+    private DriverStatus driverStatus;
 
     public DriverDTO() {
     }
@@ -44,6 +46,14 @@ public class DriverDTO {
         this.phoneNumber = phoneNumber;
     }
 
+    public DriverStatus getDriverStatus() {
+        return driverStatus;
+    }
+
+    public void setDriverStatus(DriverStatus driverStatus) {
+        this.driverStatus = driverStatus;
+    }
+
     @Override
     public String toString() {
         return "DriverDTO{" +
@@ -51,6 +61,7 @@ public class DriverDTO {
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", phoneNumber=" + phoneNumber +
+                ", driverStatus=" + driverStatus +
                 '}';
     }
 }

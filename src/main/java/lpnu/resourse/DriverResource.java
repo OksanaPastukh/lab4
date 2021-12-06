@@ -32,5 +32,9 @@ public class DriverResource {
     {
         return driverService.updateDriver(driverDTO);
     }
+    @GetMapping("/drivers/{id}")
+    public DriverDTO getDriverById(@PathVariable final long id){
+        return driverService.getDriverById(id);
+    }
 
 }

@@ -37,4 +37,9 @@ public class DriverServiceImpl implements DriverService {
 
         return DriverToDriverDTOMapper.toDTO(driver);
     }
+
+    @Override
+    public DriverDTO getDriverById(long id) {
+        return DriverToDriverDTOMapper.toDTO(DriverRepository.getDriverById(id));
+    }
 }

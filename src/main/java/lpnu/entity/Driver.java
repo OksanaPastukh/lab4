@@ -1,5 +1,6 @@
 package lpnu.entity;
 
+import lpnu.entity.enumeration.DriverStatus;
 import lpnu.repository.DriverRepository;
 import org.springframework.stereotype.Component;
 
@@ -11,6 +12,7 @@ public class Driver implements Serializable {
     private String name;
     private  String surname;
     private int phoneNumber;
+    private DriverStatus driverStatus;
 
     public Driver() {
     }
@@ -20,6 +22,7 @@ public class Driver implements Serializable {
         this.name = name;
         this.surname = surname;
         this.phoneNumber = phoneNumber;
+        this.driverStatus = DriverStatus.ACTIVE;
     }
 
     public long getId() {
@@ -50,6 +53,14 @@ public class Driver implements Serializable {
         this.phoneNumber = phoneNumber;
     }
 
+    public DriverStatus getDriverStatus() {
+        return driverStatus;
+    }
+
+    public void setDriverStatus(DriverStatus driverStatus) {
+        this.driverStatus = driverStatus;
+    }
+
     @Override
     public String toString() {
         return "Driver{" +
@@ -57,6 +68,7 @@ public class Driver implements Serializable {
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", phoneNumber=" + phoneNumber +
+                ", driverStatus=" + driverStatus +
                 '}';
     }
 }

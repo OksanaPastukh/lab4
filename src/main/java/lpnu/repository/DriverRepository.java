@@ -67,6 +67,10 @@ public class DriverRepository {
     }
     public static Driver getDriverById(long id)
     {
+        if(!(drivers.keySet().contains(id))){//todo add exception
+
+            throw new ArithmeticException();
+        }
         Driver result= drivers.get(id);
         return result;
     }
