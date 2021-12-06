@@ -3,6 +3,7 @@ lpnu\service\impl\CustomerServiceImpl.class
 lpnu\dto\NewCustomerDTO.class
 lpnu\mapper\CustomerToCustomerDTOMapper.class
 lpnu\dto\DriverDTO.class
+lpnu\dto\NewDriverDTO.class
 lpnu\repository\DriverRepository.class
 lpnu\service\DriverService.class
 lpnu\resourse\CustomerResource.class

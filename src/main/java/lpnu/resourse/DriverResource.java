@@ -1,11 +1,13 @@
 package lpnu.resourse;
 
+import lpnu.dto.CustomerDTO;
 import lpnu.dto.DriverDTO;
+import lpnu.dto.NewCustomerDTO;
+import lpnu.dto.NewDriverDTO;
 import lpnu.service.DriverService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,5 +21,10 @@ public class DriverResource {
     @GetMapping("/drivers")
     public List<DriverDTO> getAllDrivers(){
         return driverService.getAllDrivers();
+    }
+
+    @PostMapping("/drivers")
+    public DriverDTO createDriver(@RequestBody @Validated final NewDriverDTO newDriverDTO){
+        return driverService.createDriver(newDriverDTO);
     }
 }

@@ -1,6 +1,6 @@
 package lpnu.repository;
 
-import lpnu.entity.Customer;
+import lpnu.dto.NewDriverDTO;
 import lpnu.entity.Driver;
 import org.springframework.stereotype.Repository;
 
@@ -56,6 +56,13 @@ public class DriverRepository {
     }
     public static List<Driver> getAllCustomers(){
         return drivers.values().stream().collect(Collectors.toList());
+    }
+
+    public static Driver createDriver(NewDriverDTO newDriverDTO) {
+        Driver driver = new Driver(newDriverDTO.getName(),
+                newDriverDTO.getSurname(),newDriverDTO.getPhoneNumber());
+        drivers.put(driver.getId(),driver);
+        return  driver;
     }
 
 }
