@@ -15,4 +15,5 @@ lpnu\Application.class
 lpnu\entity\Driver.class
 lpnu\repository\CustomerRepository.class
 lpnu\service\impl\DriverServiceImpl.class
+lpnu\entity\enumeration\DriverStatus.class
 lpnu\mapper\DriverToDriverDTOMapper.class

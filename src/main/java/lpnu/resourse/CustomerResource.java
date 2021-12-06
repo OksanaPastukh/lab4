@@ -36,4 +36,9 @@ public class CustomerResource {
     public CustomerDTO getCustomerById(@PathVariable final long id){
         return customerService.getCustomerById(id);
     }
+
+    @DeleteMapping("/customers/{id}")
+    public CustomerDTO deleteCustomerById(@PathVariable final  long id){
+        return customerService.deleteCustomerById(id);
+    }
 }

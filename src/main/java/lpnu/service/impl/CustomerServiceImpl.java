@@ -3,6 +3,7 @@ package lpnu.service.impl;
 import lpnu.dto.CustomerDTO;
 import lpnu.dto.NewCustomerDTO;
 import lpnu.entity.Customer;
+import lpnu.entity.enumeration.CustomerStatus;
 import lpnu.mapper.CustomerToCustomerDTOMapper;
 import lpnu.repository.CustomerRepository;
 import lpnu.service.CustomerService;
@@ -47,5 +48,12 @@ public class CustomerServiceImpl implements CustomerService {
     @Override
     public CustomerDTO getCustomerById(long id) {
         return CustomerToCustomerDTOMapper.toDTO(CustomerRepository.getCustomerById(id));
+    }
+
+    @Override
+    public CustomerDTO deleteCustomerById(long id) {
+        Customer customer = CustomerRepository.getCustomerById(id);
+        customer.setCustomerStatus(CustomerStatus.NOT_ACTIVE);
+        return CustomerToCustomerDTOMapper.toDTO(customer);
     }
 }
