@@ -1,29 +1,14 @@
-package lpnu.entity;
+package lpnu.dto;
 
-import lpnu.repository.DriverRepository;
 import org.springframework.stereotype.Component;
 
-import java.io.Serializable;
-
 @Component
-public class Driver implements Serializable {
-    private long id;
+public class NewDriverDTO {
     private String name;
     private  String surname;
     private int phoneNumber;
 
-    public Driver() {
-    }
-
-    public Driver(String name, String surname, int phoneNumber) {
-        this.id = DriverRepository.getNewId();
-        this.name = name;
-        this.surname = surname;
-        this.phoneNumber = phoneNumber;
-    }
-
-    public long getId() {
-        return id;
+    public NewDriverDTO() {
     }
 
     public String getName() {
@@ -52,9 +37,8 @@ public class Driver implements Serializable {
 
     @Override
     public String toString() {
-        return "Driver{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
+        return "NewDriverDTO{" +
+                "name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", phoneNumber=" + phoneNumber +
                 '}';

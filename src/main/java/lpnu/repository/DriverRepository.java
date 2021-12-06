@@ -1,9 +1,15 @@
 package lpnu.repository;
 
+import lpnu.entity.Customer;
 import lpnu.entity.Driver;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,16 +18,31 @@ import java.util.stream.Collectors;
 @Repository
 public class DriverRepository {
     private static Map<Long, Driver> drivers = new HashMap<Long,Driver>();
-    //private static String filename = "drivers.dat";
+    private static String filename = "drivers.dat";
 
     @PostConstruct
     public static void init()
     {
-        drivers = new HashMap<Long,Driver>();
-        Driver drive1 = new Driver("one","surname_one",123);
-        drivers.put(drive1.getId(),drive1);
-        Driver drive2 = new Driver("two","surname_two",456);
-        drivers.put(drive2.getId(),drive2);
+        try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filename)))
+        {
+            drivers=((HashMap<Long, Driver>)ois.readObject());
+
+        }catch(Exception ex){
+            System.out.println(ex.getMessage());
+            drivers = new HashMap<Long, Driver>();
+        }
+    }
+
+    @PreDestroy
+    public static void preDestroy()
+    {
+        try(ObjectOutputStream oos= new ObjectOutputStream(new FileOutputStream(filename))){
+            oos.writeObject(drivers);
+            System.out.println("File has been written");
+        }catch(Exception ex){
+
+            System.out.println(ex.getMessage());
+        }
     }
 
 
