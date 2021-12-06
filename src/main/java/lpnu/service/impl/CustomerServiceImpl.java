@@ -34,11 +34,18 @@ public class CustomerServiceImpl implements CustomerService {
     public CustomerDTO updateCustomer(CustomerDTO customerDTO) {
 
         final Customer customer = CustomerRepository.getCustomerById(customerDTO.getId());
+        //todo add exception if customer = null
+        //todo add exception if customerdto.phonenumber not uniqule
         customer.setName(customerDTO.getName());
         customer.setSurname(customerDTO.getSurname());
         customer.setPhoneNumber(customerDTO.getPhoneNumber());
         customer.setCustomerStatus(customerDTO.getCustomerStatus());
 
         return CustomerToCustomerDTOMapper.toDTO(customer);
+    }
+
+    @Override
+    public CustomerDTO getCustomerById(long id) {
+        return CustomerToCustomerDTOMapper.toDTO(CustomerRepository.getCustomerById(id));
     }
 }

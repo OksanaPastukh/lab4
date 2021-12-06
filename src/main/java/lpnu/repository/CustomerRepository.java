@@ -62,8 +62,13 @@ public class CustomerRepository {
         customers.put(customer.getId(),customer);
         return  customer;
     }
+
     public static Customer getCustomerById(long id)
     {
+        if(!(customers.keySet().contains(id))){//todo add exception
+
+            throw new ArithmeticException();
+        }
         Customer result= customers.get(id);
         return result;
     }

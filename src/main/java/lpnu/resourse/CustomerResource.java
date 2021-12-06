@@ -32,4 +32,8 @@ public class CustomerResource {
     {
         return customerService.updateCustomer(customerDTO);
     }
+    @GetMapping("/customers/{id}")
+    public CustomerDTO getCustomerById(@PathVariable final long id){
+        return customerService.getCustomerById(id);
+    }
 }
