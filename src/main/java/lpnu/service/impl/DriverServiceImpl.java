@@ -4,6 +4,7 @@ package lpnu.service.impl;
 import lpnu.dto.DriverDTO;
 import lpnu.dto.NewDriverDTO;
 import lpnu.entity.Driver;
+import lpnu.entity.enumeration.DriverStatus;
 import lpnu.mapper.DriverToDriverDTOMapper;
 import lpnu.repository.DriverRepository;
 import lpnu.service.DriverService;
@@ -41,5 +42,12 @@ public class DriverServiceImpl implements DriverService {
     @Override
     public DriverDTO getDriverById(long id) {
         return DriverToDriverDTOMapper.toDTO(DriverRepository.getDriverById(id));
+    }
+
+    @Override
+    public DriverDTO deleteDriverById(long id) {
+        Driver driver = DriverRepository.getDriverById(id);
+        driver.setDriverStatus(DriverStatus.NOT_ACTIVE);
+        return DriverToDriverDTOMapper.toDTO(driver);
     }
 }

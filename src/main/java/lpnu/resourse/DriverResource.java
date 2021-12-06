@@ -36,5 +36,9 @@ public class DriverResource {
     public DriverDTO getDriverById(@PathVariable final long id){
         return driverService.getDriverById(id);
     }
+    @DeleteMapping("/drivers/{id}")
+    public DriverDTO deleteDriverById(@PathVariable final  long id){
+        return driverService.deleteDriverById(id);
+    }
 
 }
