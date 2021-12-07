@@ -1,6 +1,7 @@
 package lpnu.entity;
 
 import lpnu.entity.enumeration.VehicleStatus;
+import lpnu.exception.ServiceException;
 import lpnu.repository.DriverRepository;
 import lpnu.repository.VehicleRepository;
 import org.springframework.stereotype.Component;
@@ -53,7 +54,9 @@ public abstract class Vehicle implements Serializable {
             this.driver = driver;
             driverId = (driver == null) ? 0 : driver.getId();//not ready
         }
-        //else //todo exception
+        else {
+            throw  new ServiceException(400,"Incorrect vehicle status");
+        }
     }
 
     public void setVehicleStatus(VehicleStatus vehicleStatus) {
@@ -63,13 +66,19 @@ public abstract class Vehicle implements Serializable {
                 if(getVehicleStatus() == VehicleStatus.READY)
                 {
                     this.vehicleStatus = vehicleStatus;
-                }//todo exception
+                }
+                else {
+                    throw  new ServiceException(400,"Incorrect vehicle status");
+                }
                 break;
             case READY:
                 if(getDriver() != null)
                 {
                     this.vehicleStatus = vehicleStatus;
-                }//todo exception
+                }
+                else {
+                throw  new ServiceException(400,"Incorrect vehicle status");
+            }
                 break;
 //
 //                if(getVehicleStatus() == VehicleStatus.READY)

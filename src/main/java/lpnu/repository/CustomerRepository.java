@@ -3,6 +3,7 @@ package lpnu.repository;
 import lpnu.dto.NewCustomerDTO;
 import lpnu.entity.Customer;
 //import org.springframework.asm.TypeReference;
+import lpnu.exception.ServiceException;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
@@ -65,9 +66,9 @@ public class CustomerRepository {
 
     public static Customer getCustomerById(long id)
     {
-        if(!(customers.keySet().contains(id))){//todo add exception
+        if(!(customers.keySet().contains(id))){
 
-            throw new ArithmeticException();
+            throw new ServiceException(400,"Customer with this id not found");
         }
         Customer result= customers.get(id);
         return result;

@@ -5,13 +5,13 @@ import lpnu.dto.VehicleDTO;
 import lpnu.entity.Car;
 import lpnu.entity.Truck;
 import lpnu.entity.Vehicle;
+import lpnu.exception.ServiceException;
 import org.springframework.stereotype.Component;
 
 @Component
 public class VehicleToVehicleDTOMapper {
     public static VehicleDTO toDTO(Vehicle vehicle){
-        // VehicleDTO vehicleDTO = new VehicleDTO();
-        VehicleDTO vehicleDTO = new VehicleDTO();
+        VehicleDTO vehicleDTO ;
         switch (vehicle.getClass().getTypeName()) {
             case "lpnu.entity.Car":
                 vehicleDTO = CarToCarDTOMapper.toDTO((Car) vehicle);
@@ -20,7 +20,7 @@ public class VehicleToVehicleDTOMapper {
                  vehicleDTO =  TruckToTruckDTOMapper.toDTO((Truck) vehicle);
                 break;
             default:
-                //todo exception
+                throw  new ServiceException(400,"Incorrect vehicle type");
         }
         vehicleDTO.setId(vehicle.getId());
         vehicleDTO.setNumberVehicle(vehicle.getNumberVehicle());

@@ -4,6 +4,7 @@ package lpnu.repository;
 import lpnu.entity.Customer;
 import lpnu.entity.Driver;
 import lpnu.entity.Vehicle;
+import lpnu.exception.ServiceException;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
@@ -66,9 +67,9 @@ public class VehicleRepository {
     }
     public static Vehicle getVehicleById(long id)
     {
-        if(!(vehicles.keySet().contains(id))){//todo add exception
+        if(!(vehicles.keySet().contains(id))){
 
-            throw new ArithmeticException();
+            throw new ServiceException(400,"Vehicle with this id not found");
         }
         Vehicle result= vehicles.get(id);
         return result;

@@ -3,6 +3,7 @@ package lpnu.repository;
 import lpnu.dto.NewDriverDTO;
 import lpnu.entity.Customer;
 import lpnu.entity.Driver;
+import lpnu.exception.ServiceException;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
@@ -67,9 +68,9 @@ public class DriverRepository {
     }
     public static Driver getDriverById(long id)
     {
-        if(!(drivers.keySet().contains(id))){//todo add exception
+        if(!(drivers.keySet().contains(id))){
 
-            throw new ArithmeticException();
+            throw new ServiceException(400,"Driver with this id not found");
         }
         Driver result= drivers.get(id);
         return result;
