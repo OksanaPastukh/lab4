@@ -5,12 +5,14 @@ import lpnu.repository.DriverRepository;
 import lpnu.repository.VehicleRepository;
 import org.springframework.stereotype.Component;
 
+import java.io.Serializable;
 
-public abstract class Vehicle {
+
+public abstract class Vehicle implements Serializable {
     private long id;
     private String numberVehicle;
     private VehicleStatus vehicleStatus;
-    private Driver driver;
+    private transient Driver driver;
     private long driverId;
 
     protected Vehicle() {

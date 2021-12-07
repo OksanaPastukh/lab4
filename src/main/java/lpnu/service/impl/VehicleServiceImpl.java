@@ -1,7 +1,9 @@
 package lpnu.service.impl;
 
+import lpnu.dto.VehicleAdvDTO;
 import lpnu.dto.VehicleDTO;
 import lpnu.mapper.DriverToDriverDTOMapper;
+import lpnu.mapper.VehicleToVehicleAdvDTOMapper;
 import lpnu.mapper.VehicleToVehicleDTOMapper;
 import lpnu.repository.DriverRepository;
 import lpnu.repository.VehicleRepository;
@@ -15,9 +17,9 @@ import java.util.stream.Collectors;
 public class VehicleServiceImpl implements VehicleService {
 
     @Override
-    public List<VehicleDTO> getAllVehicles() {
+    public List<VehicleAdvDTO> getAllVehicles() {
         return VehicleRepository.getAllVehicles().stream()
-                .map(e -> VehicleToVehicleDTOMapper.toDTO(e))
+                .map(e -> VehicleToVehicleAdvDTOMapper.toDTO(e))
                 .collect(Collectors.toList());
     }
 }

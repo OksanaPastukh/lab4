@@ -1,6 +1,7 @@
 package lpnu.resourse;
 
 import lpnu.dto.DriverDTO;
+import lpnu.dto.VehicleAdvDTO;
 import lpnu.dto.VehicleDTO;
 import lpnu.service.VehicleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,5 +19,7 @@ public class VehicleResource {
     private VehicleService vehicleService;
 
     @GetMapping("/vehicles")
-    public List<VehicleDTO> getAllVehicles(){return vehicleService.getAllVehicles();}
+    public List<VehicleAdvDTO> getAllVehicles(){return vehicleService.getAllVehicles();}
+
+
 }
