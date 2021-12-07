@@ -53,6 +53,7 @@ public abstract class Vehicle implements Serializable {
             this.driver = driver;
             driverId = (driver == null) ? 0 : driver.getId();//not ready
         }
+        //else //todo exception
     }
 
     public void setVehicleStatus(VehicleStatus vehicleStatus) {
@@ -62,13 +63,13 @@ public abstract class Vehicle implements Serializable {
                 if(getVehicleStatus() == VehicleStatus.READY)
                 {
                     this.vehicleStatus = vehicleStatus;
-                }
+                }//todo exception
                 break;
             case READY:
                 if(getDriver() != null)
                 {
                     this.vehicleStatus = vehicleStatus;
-                }
+                }//todo exception
                 break;
 //
 //                if(getVehicleStatus() == VehicleStatus.READY)

@@ -2,6 +2,9 @@ package lpnu.service.impl;
 
 import lpnu.dto.VehicleAdvDTO;
 import lpnu.dto.VehicleDTO;
+import lpnu.entity.Driver;
+import lpnu.entity.Vehicle;
+import lpnu.entity.enumeration.VehicleStatus;
 import lpnu.mapper.DriverToDriverDTOMapper;
 import lpnu.mapper.VehicleToVehicleAdvDTOMapper;
 import lpnu.mapper.VehicleToVehicleDTOMapper;
@@ -16,10 +19,31 @@ import java.util.stream.Collectors;
 @Service
 public class VehicleServiceImpl implements VehicleService {
 
+ //   @Override
+//    public List<VehicleAdvDTO> getAllVehicles() {
+//        return VehicleRepository.getAllVehicles().stream()
+//                .map(e -> VehicleToVehicleAdvDTOMapper.toDTO(e))
+//                .collect(Collectors.toList());
+//    }
     @Override
-    public List<VehicleAdvDTO> getAllVehicles() {
+    public List<VehicleDTO> getAllVehicles() {
         return VehicleRepository.getAllVehicles().stream()
-                .map(e -> VehicleToVehicleAdvDTOMapper.toDTO(e))
+                .map(e -> VehicleToVehicleDTOMapper.toDTO(e))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public VehicleDTO setDriver(long id_v, long id_d) {
+        Vehicle vehicle = VehicleRepository.getVehicleById(id_v);
+        Driver driver = (id_d==0? null:DriverRepository.getDriverById(id_d));
+        vehicle.setDriver(driver);
+        return VehicleToVehicleDTOMapper.toDTO(vehicle);
+    }
+
+    @Override
+    public VehicleDTO setStatus(long id_v, VehicleStatus vehicleStatus) {
+        Vehicle vehicle = VehicleRepository.getVehicleById(id_v);
+        vehicle.setVehicleStatus(vehicleStatus);
+        return VehicleToVehicleDTOMapper.toDTO(vehicle);
     }
 }

@@ -57,9 +57,20 @@ public class VehicleRepository {
     }
 
     protected static void addVehicleToRepository(Vehicle vehicle) {
+
         vehicles.put(vehicle.getId(),vehicle);
     }
     public static List<Vehicle> getAllVehicles(){
-        return vehicles.values().stream().collect(Collectors.toList());
+        return vehicles.values().stream()
+                .collect(Collectors.toList());
+    }
+    public static Vehicle getVehicleById(long id)
+    {
+        if(!(vehicles.keySet().contains(id))){//todo add exception
+
+            throw new ArithmeticException();
+        }
+        Vehicle result= vehicles.get(id);
+        return result;
     }
 }
