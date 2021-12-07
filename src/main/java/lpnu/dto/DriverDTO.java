@@ -54,14 +54,4 @@ public class DriverDTO {
         this.driverStatus = driverStatus;
     }
 
-    @Override
-    public String toString() {
-        return "DriverDTO{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", phoneNumber=" + phoneNumber +
-                ", driverStatus=" + driverStatus +
-                '}';
-    }
 }

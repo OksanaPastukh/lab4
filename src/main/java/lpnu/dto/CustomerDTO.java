@@ -52,14 +52,5 @@ public class CustomerDTO {
         this.customerStatus = customerStatus;
     }
 
-    @Override
-    public String toString() {
-        return "CustomerDTO{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", phoneNumber=" + phoneNumber +
-                ", customerStatus=" + customerStatus +
-                '}';
-    }
+
 }

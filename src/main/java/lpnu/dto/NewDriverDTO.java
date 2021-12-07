@@ -35,12 +35,5 @@ public class NewDriverDTO {
         this.phoneNumber = phoneNumber;
     }
 
-    @Override
-    public String toString() {
-        return "NewDriverDTO{" +
-                "name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", phoneNumber=" + phoneNumber +
-                '}';
-    }
+
 }
