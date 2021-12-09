@@ -2,12 +2,13 @@ package lpnu.service.impl;
 
 import lpnu.dto.CarDTO;
 import lpnu.dto.NewCarDTO;
+import lpnu.dto.VehicleDTO;
 import lpnu.entity.Car;
 import lpnu.mapper.CarToCarDTOMapper;
-import lpnu.mapper.CustomerToCustomerDTOMapper;
+
+import lpnu.mapper.VehicleToVehicleDTOMapper;
 import lpnu.repository.CarRepository;
-import lpnu.repository.CustomerRepository;
-import lpnu.repository.VehicleRepository;
+
 import lpnu.service.CarService;
 import org.springframework.stereotype.Service;
 
@@ -18,10 +19,15 @@ import java.util.stream.Collectors;
 public class CarServiceImpl implements CarService {
 
     @Override
-    public CarDTO createCar(NewCarDTO newCarDTO) {
+    public VehicleDTO createCar(NewCarDTO newCarDTO) {
         Car car = CarRepository.createCar(newCarDTO);
-        return CarToCarDTOMapper.toDTO(car);
+        return VehicleToVehicleDTOMapper.toDTO(car);
     }
 
-
+    @Override
+    public List<VehicleDTO> getAllReadyCar() {
+        return CarRepository.getAllReadyCar().stream()
+                .map(e -> VehicleToVehicleDTOMapper.toDTO(e))
+                .collect(Collectors.toList());
+    }
 }

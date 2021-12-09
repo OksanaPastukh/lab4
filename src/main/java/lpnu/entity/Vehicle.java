@@ -52,7 +52,7 @@ public abstract class Vehicle implements Serializable {
     public void setDriver(Driver driver) {
         if (getVehicleStatus() == VehicleStatus.NOT_READY) {
             this.driver = driver;
-            driverId = (driver == null) ? 0 : driver.getId();//not ready
+            driverId = (driver == null) ? 0 : driver.getId();
         }
         else {
             throw  new ServiceException(400,"Incorrect vehicle status");
@@ -80,13 +80,13 @@ public abstract class Vehicle implements Serializable {
                 throw  new ServiceException(400,"Incorrect vehicle status");
             }
                 break;
-//
-//                if(getVehicleStatus() == VehicleStatus.READY)
-//                {
-//                    this.vehicleStatus = vehicleStatus;
-//                }
-//                break;
-            //exception
+            case NOT_ACTIVE:
+                if (getVehicleStatus() != VehicleStatus.NOT_READY) {
+                    throw  new ServiceException(400,"Vehicle status is NOT_READY");
+                }
+                this.vehicleStatus =vehicleStatus;
+                break;
+
 
         }
     }
@@ -101,4 +101,6 @@ public abstract class Vehicle implements Serializable {
                 ", driverId=" + driverId +
                 '}';
     }
+
+    public abstract double CalculatePrice(int timeInRoad, int waitingTime, int mileage);
 }

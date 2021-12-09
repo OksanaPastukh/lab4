@@ -3,10 +3,15 @@ package lpnu.dto;
 import lpnu.entity.enumeration.CustomerStatus;
 import org.springframework.stereotype.Component;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
 @Component
 public class CustomerDTO {
     private long id;
+    @NotBlank
     private String name;
+    @NotBlank
     private  String surname;
     private int phoneNumber;
     private CustomerStatus customerStatus;

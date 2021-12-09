@@ -1,12 +1,10 @@
 package lpnu.service.impl;
 
-import lpnu.dto.VehicleAdvDTO;
 import lpnu.dto.VehicleDTO;
 import lpnu.entity.Driver;
 import lpnu.entity.Vehicle;
 import lpnu.entity.enumeration.VehicleStatus;
-import lpnu.mapper.DriverToDriverDTOMapper;
-import lpnu.mapper.VehicleToVehicleAdvDTOMapper;
+import lpnu.exception.ServiceException;
 import lpnu.mapper.VehicleToVehicleDTOMapper;
 import lpnu.repository.DriverRepository;
 import lpnu.repository.VehicleRepository;
@@ -44,6 +42,19 @@ public class VehicleServiceImpl implements VehicleService {
     public VehicleDTO setStatus(long id_v, VehicleStatus vehicleStatus) {
         Vehicle vehicle = VehicleRepository.getVehicleById(id_v);
         vehicle.setVehicleStatus(vehicleStatus);
+        return VehicleToVehicleDTOMapper.toDTO(vehicle);
+    }
+
+    @Override
+    public VehicleDTO getVehicleById(long id) {
+        return VehicleToVehicleDTOMapper.toDTO(VehicleRepository.getVehicleById(id));
+    }
+//todo delete
+    @Override
+    public VehicleDTO deleteVehicleById(long id) {
+        Vehicle vehicle = VehicleRepository.getVehicleById(id);
+
+        vehicle.setVehicleStatus(VehicleStatus.NOT_ACTIVE);
         return VehicleToVehicleDTOMapper.toDTO(vehicle);
     }
 }

@@ -1,6 +1,5 @@
 package lpnu.mapper;
 
-import lpnu.dto.VehicleAdvDTO;
 import lpnu.dto.VehicleDTO;
 import lpnu.entity.Car;
 import lpnu.entity.Truck;

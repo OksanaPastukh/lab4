@@ -73,5 +73,11 @@ public class CustomerRepository {
         Customer result= customers.get(id);
         return result;
     }
+    public static boolean isPhoneNumberUnique(final long customer_id,final int phoneNumber){
+       return customers.values().stream()
+                .noneMatch((customer) -> customer.getPhoneNumber() == phoneNumber
+                  &&  customer.getId()!=customer_id);
+
+    }
 
 }

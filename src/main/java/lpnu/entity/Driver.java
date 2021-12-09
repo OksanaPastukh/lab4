@@ -1,6 +1,8 @@
 package lpnu.entity;
 
 import lpnu.entity.enumeration.DriverStatus;
+import lpnu.exception.ServiceException;
+import lpnu.repository.CustomerRepository;
 import lpnu.repository.DriverRepository;
 import org.springframework.stereotype.Component;
 
@@ -50,7 +52,12 @@ public class Driver implements Serializable {
     }
 
     public void setPhoneNumber(int phoneNumber) {
-        this.phoneNumber = phoneNumber;
+        if(DriverRepository.isPhoneNumberUnique(id,phoneNumber)){
+            this.phoneNumber = phoneNumber ;
+        }
+        else{
+            throw new ServiceException(400,"Customer phone number is not unique");
+        }
     }
 
     public DriverStatus getDriverStatus() {

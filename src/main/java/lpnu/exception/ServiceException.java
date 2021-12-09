@@ -4,8 +4,9 @@ public class ServiceException extends RuntimeException{
     private int code;
     private String message;
 
-    public ServiceException(final int code, final String message)
-    {
+
+
+    public ServiceException(final int code, final String message) {
         this.code = code;
         this.message = message;
     }
@@ -32,4 +33,6 @@ public class ServiceException extends RuntimeException{
     public void setMessage(String message) {
         this.message = message;
     }
+
+
 }

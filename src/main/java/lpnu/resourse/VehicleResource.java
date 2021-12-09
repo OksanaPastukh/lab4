@@ -1,7 +1,6 @@
 package lpnu.resourse;
 
-import lpnu.dto.DriverDTO;
-import lpnu.dto.VehicleAdvDTO;
+
 import lpnu.dto.VehicleDTO;
 import lpnu.entity.enumeration.VehicleStatus;
 import lpnu.service.VehicleService;
@@ -31,9 +30,14 @@ public class VehicleResource {
   {
         return vehicleService.setStatus(id_v,status);
   }
+    @GetMapping("/vehicles/{id}")
+    public VehicleDTO getVehicleById(@PathVariable final long id) {
+        return vehicleService.getVehicleById(id);
+    }
 
-
-
-
+    @DeleteMapping("/vehicles/{id}")
+    public VehicleDTO deleteVehicleById(@PathVariable final  long id){
+        return vehicleService.deleteVehicleById(id);
+    }
 
 }

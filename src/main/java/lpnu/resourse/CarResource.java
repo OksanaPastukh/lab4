@@ -17,8 +17,10 @@ public class CarResource {
 
 
     @PostMapping("/cars")
-    public CarDTO createCar(@RequestBody @Validated final NewCarDTO newCarDTO){
+    public VehicleDTO createCar(@RequestBody @Validated final NewCarDTO newCarDTO){
         return carService.createCar(newCarDTO);
     }
+    @GetMapping("/cars")
+    public List<VehicleDTO> getAllReadyCar(){return carService.getAllReadyCar();}
 
 }

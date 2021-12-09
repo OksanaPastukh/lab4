@@ -56,7 +56,7 @@ public class DriverRepository {
                 .orElse(0) + 1;
         return id ;
     }
-    public static List<Driver> getAllCustomers(){
+    public static List<Driver> getAllDrivers(){
         return drivers.values().stream().collect(Collectors.toList());
     }
 
@@ -74,6 +74,12 @@ public class DriverRepository {
         }
         Driver result= drivers.get(id);
         return result;
+    }
+    public static boolean isPhoneNumberUnique(final long driver_id,final int phoneNumber){
+        return drivers.values().stream()
+                .noneMatch((driver) -> driver.getPhoneNumber() == phoneNumber
+                        &&  driver.getId()!=driver_id);
+
     }
 
 }

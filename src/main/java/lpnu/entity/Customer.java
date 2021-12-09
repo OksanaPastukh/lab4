@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lpnu.entity.enumeration.CustomerStatus;
+import lpnu.exception.ServiceException;
 import lpnu.repository.CustomerRepository;
 import org.springframework.stereotype.Component;
 
@@ -16,8 +17,6 @@ public class Customer implements Serializable {
     private  String surname;
     private int phoneNumber;
     private CustomerStatus customerStatus;
-   // private  transient String file1;
-
 
     private Customer() {
     }
@@ -26,7 +25,7 @@ public class Customer implements Serializable {
         this.id = CustomerRepository.getNewId();
         this.name = name;
         this.surname = surname;
-        this.phoneNumber = phoneNumber;
+        this.setPhoneNumber(phoneNumber);
         this.customerStatus = CustomerStatus.ACTIVE;
     }
     public String getSurname() {
@@ -42,7 +41,12 @@ public class Customer implements Serializable {
     }
 
     public void setPhoneNumber(int phoneNumber) {
-        this.phoneNumber = phoneNumber;
+        if(CustomerRepository.isPhoneNumberUnique(id,phoneNumber)){
+            this.phoneNumber = phoneNumber ;
+        }
+        else{
+            throw new ServiceException(400,"Customer phone number is not unique");
+        }
     }
 
     public CustomerStatus getCustomerStatus() {
